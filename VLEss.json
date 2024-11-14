@@ -1,0 +1,4775 @@
+{
+  "log": {
+    "level": "warn",
+    "output": "box.log",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "tag": "dns-remote",
+        "address": "udp://1.1.1.1",
+        "address_resolver": "dns-direct"
+      },
+      {
+        "tag": "dns-trick-direct",
+        "address": "https://sky.rethinkdns.com/",
+        "detour": "direct-fragment"
+      },
+      {
+        "tag": "dns-direct",
+        "address": "1.1.1.1",
+        "address_resolver": "dns-local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-local",
+        "address": "local",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns-block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "domain": "cp.cloudflare.com",
+        "server": "dns-remote",
+        "rewrite_ttl": 3000
+      },
+      {
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "server": "dns-direct"
+      }
+    ],
+    "final": "dns-remote",
+    "static_ips": {
+      "sky.rethinkdns.com": [
+        "104.17.147.22",
+        "104.17.148.22",
+        "188.114.98.0",
+        "188.114.99.0"
+      ]
+    },
+    "independent_cache": true
+  },
+  "inbounds": [
+    {
+      "type": "tun",
+      "tag": "tun-in",
+      "mtu": 9000,
+      "inet4_address": "172.19.0.1/28",
+      "auto_route": true,
+      "strict_route": true,
+      "endpoint_independent_nat": true,
+      "stack": "mixed",
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 12334,
+      "sniff": true,
+      "sniff_override_destination": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "127.0.0.1",
+      "listen_port": 16450
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "vless § 0",
+        "vless § 1",
+        "vless § 2",
+        "vless § 3",
+        "vless § 4",
+        "vless § 5",
+        "vless § 6",
+        "vless § 7",
+        "vless § 8",
+        "vless § 9",
+        "vless § 10",
+        "vless § 11",
+        "vless § 12",
+        "vless § 13",
+        "vless § 14",
+        "vless § 15",
+        "vless § 16",
+        "vless § 17",
+        "vless § 18",
+        "vless § 19",
+        "vless § 20",
+        "vless § 21",
+        "vless § 22",
+        "vless § 23",
+        "vless § 24",
+        "vless § 25",
+        "vless § 26",
+        "vless § 27",
+        "vless § 28",
+        "vless § 29",
+        "vless § 30",
+        "vless § 31",
+        "vless § 32",
+        "vless § 33",
+        "vless § 34",
+        "vless § 35",
+        "vless § 36",
+        "vless § 37",
+        "vless § 38",
+        "vless § 39",
+        "vless § 40",
+        "vless § 41",
+        "vless § 42",
+        "vless § 43",
+        "vless § 44",
+        "vless § 45",
+        "vless § 46",
+        "vless § 47",
+        "vless § 48",
+        "vless § 49",
+        "vless § 50",
+        "vless § 51",
+        "vless § 52",
+        "vless § 53",
+        "vless § 54",
+        "vless § 55",
+        "vless § 56",
+        "vless § 57",
+        "vless § 58",
+        "vless § 59",
+        "vless § 60",
+        "vless § 61",
+        "vless § 62",
+        "vless § 63",
+        "vless § 64",
+        "vless § 65",
+        "vless § 66",
+        "vless § 67",
+        "vless § 68",
+        "vless § 69",
+        "vless § 70",
+        "vless § 71",
+        "vless § 72",
+        "vless § 73",
+        "vless § 74",
+        "vless § 75",
+        "vless § 76",
+        "vless § 77",
+        "vless § 78",
+        "vless § 79",
+        "vless § 80",
+        "vless § 81",
+        "vless § 82",
+        "vless § 83",
+        "vless § 84",
+        "vless § 85",
+        "vless § 86",
+        "vless § 87",
+        "vless § 88",
+        "vless § 89",
+        "vless § 90",
+        "vless § 91",
+        "vless § 92",
+        "vless § 93",
+        "vless § 94",
+        "vless § 95",
+        "vless § 96",
+        "vless § 97",
+        "vless § 98",
+        "vless § 99",
+        "vless § 100",
+        "vless § 101",
+        "vless § 102",
+        "vless § 103",
+        "vless § 104",
+        "vless § 105",
+        "vless § 106",
+        "vless § 107",
+        "vless § 108",
+        "vless § 109",
+        "vless § 110",
+        "vless § 111",
+        "vless § 112",
+        "vless § 113",
+        "vless § 114",
+        "vless § 115",
+        "vless § 116",
+        "vless § 117",
+        "vless § 118",
+        "vless § 119",
+        "vless § 120",
+        "vless § 121",
+        "vless § 122",
+        "vless § 123",
+        "vless § 124",
+        "vless § 125",
+        "vless § 126",
+        "vless § 127",
+        "vless § 128",
+        "vless § 129",
+        "vless § 130",
+        "vless § 131",
+        "vless § 132",
+        "vless § 133",
+        "vless § 134",
+        "vless § 135",
+        "vless § 136",
+        "vless § 137",
+        "vless § 138",
+        "vless § 139",
+        "vless § 140",
+        "vless § 141",
+        "vless § 142",
+        "vless § 143",
+        "vless § 144",
+        "vless § 145",
+        "vless § 146",
+        "vless § 147",
+        "vless § 148",
+        "vless § 149",
+        "vless § 150",
+        "vless § 151",
+        "vless § 152",
+        "vless § 153",
+        "vless § 154",
+        "vless § 155",
+        "vless § 156",
+        "vless § 157",
+        "vless § 158",
+        "vless § 159",
+        "vless § 160",
+        "vless § 161",
+        "vless § 162",
+        "vless § 163",
+        "vless § 164",
+        "vless § 165",
+        "vless § 166",
+        "vless § 167",
+        "vless § 168",
+        "vless § 169",
+        "vless § 170",
+        "vless § 171",
+        "vless § 172",
+        "vless § 173",
+        "vless § 174",
+        "vless § 175",
+        "vless § 176",
+        "vless § 177",
+        "vless § 178",
+        "vless § 179",
+        "vless § 180",
+        "vless § 181",
+        "vless § 182",
+        "vless § 183",
+        "vless § 184",
+        "vless § 185",
+        "vless § 186",
+        "vless § 187",
+        "vless § 188",
+        "vless § 189",
+        "vless § 190",
+        "vless § 191"
+      ],
+      "default": "auto"
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "vless § 0",
+        "vless § 1",
+        "vless § 2",
+        "vless § 3",
+        "vless § 4",
+        "vless § 5",
+        "vless § 6",
+        "vless § 7",
+        "vless § 8",
+        "vless § 9",
+        "vless § 10",
+        "vless § 11",
+        "vless § 12",
+        "vless § 13",
+        "vless § 14",
+        "vless § 15",
+        "vless § 16",
+        "vless § 17",
+        "vless § 18",
+        "vless § 19",
+        "vless § 20",
+        "vless § 21",
+        "vless § 22",
+        "vless § 23",
+        "vless § 24",
+        "vless § 25",
+        "vless § 26",
+        "vless § 27",
+        "vless § 28",
+        "vless § 29",
+        "vless § 30",
+        "vless § 31",
+        "vless § 32",
+        "vless § 33",
+        "vless § 34",
+        "vless § 35",
+        "vless § 36",
+        "vless § 37",
+        "vless § 38",
+        "vless § 39",
+        "vless § 40",
+        "vless § 41",
+        "vless § 42",
+        "vless § 43",
+        "vless § 44",
+        "vless § 45",
+        "vless § 46",
+        "vless § 47",
+        "vless § 48",
+        "vless § 49",
+        "vless § 50",
+        "vless § 51",
+        "vless § 52",
+        "vless § 53",
+        "vless § 54",
+        "vless § 55",
+        "vless § 56",
+        "vless § 57",
+        "vless § 58",
+        "vless § 59",
+        "vless § 60",
+        "vless § 61",
+        "vless § 62",
+        "vless § 63",
+        "vless § 64",
+        "vless § 65",
+        "vless § 66",
+        "vless § 67",
+        "vless § 68",
+        "vless § 69",
+        "vless § 70",
+        "vless § 71",
+        "vless § 72",
+        "vless § 73",
+        "vless § 74",
+        "vless § 75",
+        "vless § 76",
+        "vless § 77",
+        "vless § 78",
+        "vless § 79",
+        "vless § 80",
+        "vless § 81",
+        "vless § 82",
+        "vless § 83",
+        "vless § 84",
+        "vless § 85",
+        "vless § 86",
+        "vless § 87",
+        "vless § 88",
+        "vless § 89",
+        "vless § 90",
+        "vless § 91",
+        "vless § 92",
+        "vless § 93",
+        "vless § 94",
+        "vless § 95",
+        "vless § 96",
+        "vless § 97",
+        "vless § 98",
+        "vless § 99",
+        "vless § 100",
+        "vless § 101",
+        "vless § 102",
+        "vless § 103",
+        "vless § 104",
+        "vless § 105",
+        "vless § 106",
+        "vless § 107",
+        "vless § 108",
+        "vless § 109",
+        "vless § 110",
+        "vless § 111",
+        "vless § 112",
+        "vless § 113",
+        "vless § 114",
+        "vless § 115",
+        "vless § 116",
+        "vless § 117",
+        "vless § 118",
+        "vless § 119",
+        "vless § 120",
+        "vless § 121",
+        "vless § 122",
+        "vless § 123",
+        "vless § 124",
+        "vless § 125",
+        "vless § 126",
+        "vless § 127",
+        "vless § 128",
+        "vless § 129",
+        "vless § 130",
+        "vless § 131",
+        "vless § 132",
+        "vless § 133",
+        "vless § 134",
+        "vless § 135",
+        "vless § 136",
+        "vless § 137",
+        "vless § 138",
+        "vless § 139",
+        "vless § 140",
+        "vless § 141",
+        "vless § 142",
+        "vless § 143",
+        "vless § 144",
+        "vless § 145",
+        "vless § 146",
+        "vless § 147",
+        "vless § 148",
+        "vless § 149",
+        "vless § 150",
+        "vless § 151",
+        "vless § 152",
+        "vless § 153",
+        "vless § 154",
+        "vless § 155",
+        "vless § 156",
+        "vless § 157",
+        "vless § 158",
+        "vless § 159",
+        "vless § 160",
+        "vless § 161",
+        "vless § 162",
+        "vless § 163",
+        "vless § 164",
+        "vless § 165",
+        "vless § 166",
+        "vless § 167",
+        "vless § 168",
+        "vless § 169",
+        "vless § 170",
+        "vless § 171",
+        "vless § 172",
+        "vless § 173",
+        "vless § 174",
+        "vless § 175",
+        "vless § 176",
+        "vless § 177",
+        "vless § 178",
+        "vless § 179",
+        "vless § 180",
+        "vless § 181",
+        "vless § 182",
+        "vless § 183",
+        "vless § 184",
+        "vless § 185",
+        "vless § 186",
+        "vless § 187",
+        "vless § 188",
+        "vless § 189",
+        "vless § 190",
+        "vless § 191"
+      ],
+      "url": "http://connectivitycheck.gstatic.com/generate_204",
+      "interval": "10m0s",
+      "idle_timeout": "1h40m0s"
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 0",
+      "server": "162.159.153.225",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BpB-V.PAgES.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/s4IKTkFDMsGqBc9x/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-v.pAGeS.DeV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 1",
+      "server": "188.114.96.249",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPb-v.pAgES.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/fe4TiF2DZqkDKjYd/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPb-V.PaGes.Dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 2",
+      "server": "172.67.214.246",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "Bpb-V.Pages.DeV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/F8dDMkIYiAKaAbOR/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BPb-V.PaGES.Dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 3",
+      "server": "188.114.99.133",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-v.paGeS.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/2L33jdhi5qfxGSGH/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-V.pAges.DeV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 4",
+      "server": "104.18.34.21",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPb-V.PAgES.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/yFvXZrnt18tEHj1A/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BpB-v.PaGes.DeV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 5",
+      "server": "79.127.70.123",
+      "server_port": 444,
+      "uuid": "e1310a6f-47cf-4ad0-9e23-876b26a33549",
+      "transport": {
+        "type": "http",
+        "host": "wFergalww.SpeedTest.net",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 6",
+      "server": "104.20.6.134",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.pAges.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/LtZFqGz6qD8jBoHW/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPB-V.pAges.dEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 7",
+      "server": "104.20.6.134",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-v.PAGEs.deV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/zvk78A3RrwtbmvAX/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-v.PaGeS.DEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 8",
+      "server": "217.60.249.171",
+      "server_port": 45375,
+      "uuid": "9f259fdd-cb89-478d-9bf3-dfe5d6eddcd1",
+      "transport": {
+        "type": "http",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 9",
+      "server": "172.67.1.191",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-v.PAGEs.deV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/zvk78A3RrwtbmvAX/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-v.PaGeS.DEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 10",
+      "server": "104.21.83.62",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "Bpb-V.Pages.DeV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/F8dDMkIYiAKaAbOR/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BPb-V.PaGES.Dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 11",
+      "server": "104.24.197.20",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BPB-v.PAGeS.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ekHMvTed6wJeJJlo/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-v.PagES.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 12",
+      "server": "62.60.192.89",
+      "server_port": 16185,
+      "uuid": "8cc59ad1-912d-464b-af75-9538ff2fc242",
+      "transport": {
+        "type": "http",
+        "host": "speedtest.net",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 13",
+      "server": "172.67.68.144",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BpB-V.PagEs.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/0JpojADWzjxEjdny/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BPb-v.PageS.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 14",
+      "server": "104.21.69.44",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BPb-V.paGES.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/WWV3fW788zFiZcK9/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-V.PaGeS.Dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 15",
+      "server": "172.67.214.246",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-v.PaGEs.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ABO35gszJUlKIXsP/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPB-V.pAGes.dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 16",
+      "server": "172.67.131.36",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-V.PAgEs.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/244gToVANcFvVvZJ/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BPb-v.pAgES.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 17",
+      "server": "172.67.66.177",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BPB-v.PAGeS.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ekHMvTed6wJeJJlo/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-v.PagES.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 18",
+      "server": "79.127.70.76",
+      "server_port": 2020,
+      "uuid": "f5f4315e-6759-49a3-b78c-60d9e83f470f",
+      "transport": {
+        "type": "http",
+        "host": "Doostihaa.coM",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 19",
+      "server": "185.146.173.24",
+      "server_port": 80,
+      "uuid": "fe945275-51a2-5c3c-8669-2c112ed35cec",
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "Nl1.vless.site."
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 20",
+      "server": "185.146.173.185",
+      "server_port": 2095,
+      "uuid": "6a5bcbfb-d4d7-4bc2-96b1-b8cc3527fcd6",
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/Telegramjoin:@servermomo-Telegramjoin:@servermomoTelegramjoin:@servermomo-Telegramjoin:@servermomo-Telegramjoin:@servermomo-Telegramjoin:@servermomo-Telegramjoin:@servermomo-Telegramjoin:@servermomo-Telegramjoin:@servermomoTelegramjoin:@servermomo-",
+        "headers": {
+          "Host": "Ghvvgvfgv.hdhdbbdbdhdjhsheuiejrhrujehshdhshdgshshhdh.bloG"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 21",
+      "server": "104.21.83.62",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-v.PaGEs.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ABO35gszJUlKIXsP/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPB-V.pAGes.dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 22",
+      "server": "188.114.98.135",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BpB-v.PaGeS.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/kA6liOKNXoRYx2v5/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPb-v.PAGEs.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 23",
+      "server": "51.75.30.8",
+      "server_port": 80,
+      "uuid": "1949f066-bcb0-49be-88e9-74abd940f80e",
+      "transport": {
+        "type": "ws",
+        "path": "/http",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 24",
+      "server": "23.227.38.202",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BPb-V.Pages.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/8EZOONoHtne638Vw/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-v.pAgeS.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 25",
+      "server": "162.159.138.178",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.pageS.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/f5pvJ1vR6QZ0WX9v/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-v.PAges.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 26",
+      "server": "104.20.5.134",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-v.PAGEs.deV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/zvk78A3RrwtbmvAX/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-v.PaGeS.DEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 27",
+      "server": "103.184.45.164",
+      "server_port": 443,
+      "uuid": "782efefc-aac2-a7f2-6e2b-e42f7bc5d75a",
+      "tls": {
+        "enabled": true,
+        "server_name": "wwwd7e1909f3a7e4477.jostar-data.nl",
+        "alpn": "h3",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/quran/deam_net301.67%20GB/?ed=2560",
+        "headers": {
+          "Host": "d7e1909f3a7e4477.jostar-data.nl"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 28",
+      "server": "89.235.116.239",
+      "server_port": 13802,
+      "uuid": "d0f089ec-61d4-4d75-8347-7a813c18ddf0",
+      "transport": {
+        "type": "http",
+        "host": "myket.ir,fast.com",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 29",
+      "server": "188.114.98.24",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPb-v.PageS.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/R2lncvPJWZWjt7Oi/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BpB-V.pAGeS.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 30",
+      "server": "188.114.96.3",
+      "server_port": 2096,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "ClOUDFLarEiRaN1.PaGeS.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/kOUuV9R33AKrPQI4",
+        "headers": {
+          "Host": "cloudflareiran1.pages.dev"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 31",
+      "server": "104.26.11.29",
+      "server_port": 443,
+      "uuid": "c0f0684e-bbc5-45fa-9e04-2e617d11eb68",
+      "tls": {
+        "enabled": true,
+        "server_name": "yelantcct8ft.thelastronin.cloudns.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/VLESS/ca-full.privateip.net",
+        "headers": {
+          "Host": "yelan.thelastronin.cloudns.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 32",
+      "server": "190.93.247.72",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPb-V.paGES.DeV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/DiOY4d2HdDv22JMW%5C/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BpB-v.PaGES.dEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 33",
+      "server": "172.67.71.76",
+      "server_port": 443,
+      "uuid": "c0f0684e-bbc5-45fa-9e04-2e617d11eb68",
+      "tls": {
+        "enabled": true,
+        "server_name": "yelantcct8ft.thelastronin.cloudns.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/VLESS/ca-full.privateip.net",
+        "headers": {
+          "Host": "yelan.thelastronin.cloudns.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 34",
+      "server": "198.244.147.21",
+      "server_port": 31251,
+      "uuid": "fade397b-9351-4d85-acb2-1330cec7001a",
+      "transport": {
+        "type": "http",
+        "host": "khabarfarsi.com",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 35",
+      "server": "185.146.173.63",
+      "server_port": 80,
+      "uuid": "2f1f7fbf-f37d-4275-c014-298a83f4e5a8",
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/",
+        "headers": {
+          "Host": "1v4.diginoshops10.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 36",
+      "server": "185.146.173.92",
+      "server_port": 80,
+      "uuid": "a1160a61-2703-5c7a-8e70-ddaf0bc9e0fc",
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "Uk2.vless.site."
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 37",
+      "server": "104.20.5.134",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.pAges.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/LtZFqGz6qD8jBoHW/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-v.PaGES.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 38",
+      "server": "20.189.104.97",
+      "server_port": 443,
+      "uuid": "6f995056-7802-4a1d-bff7-61678e626c3f",
+      "tls": {
+        "enabled": true,
+        "server_name": "dee33.azurewebsites.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "dee33.azurewebsites.net"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 39",
+      "server": "172.64.153.235",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-V.PAGEs.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/P3CkdedH5De954Jp/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-V.PAGEs.DEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 40",
+      "server": "79.127.70.87",
+      "server_port": 8383,
+      "uuid": "f1f9a376-0b8a-4486-b639-da2841acf9f5",
+      "transport": {
+        "type": "http",
+        "host": "Doostihaa.coM",
+        "path": "/",
+        "method": "GET"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 41",
+      "server": "85.9.101.173",
+      "server_port": 2086,
+      "uuid": "4462d715-f03b-4cc5-9db9-92747b1fe696",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 42",
+      "server": "151.101.2.165",
+      "server_port": 80,
+      "uuid": "9cbe7791-7d04-5d71-89c9-92d4cff083cc",
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "mortezatv665656.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 43",
+      "server": "172.66.44.64",
+      "server_port": 443,
+      "uuid": "9902fc94-31f9-4afe-b37a-82f5790b3d2a",
+      "tls": {
+        "enabled": true,
+        "server_name": "dabF5Ca6.dE1-1nD.PaGeS.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "dabF5Ca6.dE1-1nD.PaGeS.dEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 44",
+      "server": "199.232.95.123",
+      "server_port": 80,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "transport": {
+        "type": "ws",
+        "path": "/?Telegram@Linkvws?ed=2560",
+        "headers": {
+          "Host": "sara193.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 45",
+      "server": "151.101.2.216",
+      "server_port": 80,
+      "uuid": "9cbe7791-7d04-5d71-89c9-92d4cff083cc",
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "mortezatv665656.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 46",
+      "server": "104.18.165.147",
+      "server_port": 8080,
+      "uuid": "082e8559-61f6-4075-e255-7ec0f3ac052d",
+      "transport": {
+        "type": "ws",
+        "path": "/TELEGRAM-@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray",
+        "headers": {
+          "Host": "JOiNMAiN.MRaLPHa-Vpn.CoM."
+        },
+        "max_early_data": 8880,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 47",
+      "server": "2.189.104.10",
+      "server_port": 52418,
+      "uuid": "c31d6b4e-6105-4197-c94d-c45bce6c23a2",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 48",
+      "server": "95.38.210.233",
+      "server_port": 52460,
+      "uuid": "f67ed071-ff3e-492b-c46a-efb7f2c7b27c",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 49",
+      "server": "151.101.192.155",
+      "server_port": 80,
+      "uuid": "1ffadc0e-009e-4ad8-99a3-d0d2eb2f9a24",
+      "transport": {
+        "type": "ws",
+        "path": "/Channel,SPDNET,SPDNET",
+        "headers": {
+          "Host": "Siperspdservicefree.ir"
+        },
+        "max_early_data": 443,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 50",
+      "server": "104.21.53.252",
+      "server_port": 8443,
+      "uuid": "a55ff7d6-1566-4767-8daa-8fc7459b81ed",
+      "tls": {
+        "enabled": true,
+        "server_name": "a70.bluebana.info",
+        "alpn": [
+          "h3",
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 51",
+      "server": "104.24.197.20",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.paGEs.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/jdMMEgBE5RGsuynR/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpB-V.PagEs.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 52",
+      "server": "104.17.147.22",
+      "server_port": 80,
+      "uuid": "2f1f7fbf-f37d-4275-c014-298a83f4e5a8",
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/",
+        "headers": {
+          "Host": "1i5.diginoshops10.ir"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 53",
+      "server": "185.18.250.117",
+      "server_port": 443,
+      "uuid": "1e9aadae-ca17-4f75-b0a0-7de5e3858cfb",
+      "tls": {
+        "enabled": true,
+        "server_name": "xN----PMcNAAC0DKn0Rb71nDa.PAges.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram.",
+        "headers": {
+          "Host": "xn----pmcnaac0dkn0rb71nda.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 54",
+      "server": "185.146.173.185",
+      "server_port": 2053,
+      "uuid": "193a1a5f-5711-45ba-9779-4e6ab9733275",
+      "tls": {
+        "enabled": true,
+        "server_name": "Dffggvghgggvg.vshsbsbb-jzjsjb-vdhsh-mahdi-irancel.ir",
+        "alpn": [
+          "http/1.1",
+          "h2",
+          "h3"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 55",
+      "server": "188.114.99.185",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-v.paGEs.DeV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/UPTfD8Rbb9Xf8ykr/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BpB-v.pAGES.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 56",
+      "server": "104.17.147.22",
+      "server_port": 8443,
+      "uuid": "578ade22-1e58-4c37-ce01-bfad51a72c62",
+      "tls": {
+        "enabled": true,
+        "server_name": "13l1.diginoshops10.ir",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 57",
+      "server": "104.16.186.15",
+      "server_port": 2053,
+      "uuid": "3b4f4101-7ff7-4496-bda3-1d63dc2dad66",
+      "tls": {
+        "enabled": true,
+        "server_name": "Dffggvghgggvg.vshsbsbb-jzjsjb-vdhsh-mahdi-irancel.ir",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 58",
+      "server": "172.66.44.195",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "23sPT.pAGEs.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@V2ray_Alpha/",
+        "headers": {
+          "Host": "23spt.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 59",
+      "server": "188.114.97.169",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "23spt.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tel-vpnAndroid2t",
+        "headers": {
+          "Host": "23spt.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 60",
+      "server": "198.41.209.2",
+      "server_port": 8443,
+      "uuid": "01273555-eb93-4398-b5b9-9c7e25e65fd9",
+      "tls": {
+        "enabled": true,
+        "server_name": "meta1.modinso.ir",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "firefox"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@metavpnn",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 61",
+      "server": "172.66.46.213",
+      "server_port": 443,
+      "uuid": "06fca101-47af-4e07-b091-8fa49d0b2474",
+      "tls": {
+        "enabled": true,
+        "server_name": "speedtest.svgspeedtest.net",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy",
+        "headers": {
+          "Host": "speedtest.svgspeedtest.net"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 62",
+      "server": "199.232.37.15",
+      "server_port": 80,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "transport": {
+        "type": "ws",
+        "path": "/BCXzvAcvSB7JzMWj?ed",
+        "headers": {
+          "Host": "sara193.ir"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 63",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "58db2ada-c47b-40ce-b40c-c5ca45ae7a48",
+      "tls": {
+        "enabled": true,
+        "server_name": "pscresearch.faculty.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ws/",
+        "headers": {
+          "Host": "vrg5fjnbbn.com"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 64",
+      "server": "185.146.173.46",
+      "server_port": 443,
+      "uuid": "2d5525e1-1aac-54ca-9e96-7fb552b0e6b9",
+      "tls": {
+        "enabled": true,
+        "server_name": "pt1.vless.site",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "pt1.vless.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 65",
+      "server": "104.20.19.245",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 66",
+      "server": "104.17.245.156",
+      "server_port": 443,
+      "uuid": "57f29427-86cf-4ad5-8331-f3f89392e642",
+      "tls": {
+        "enabled": true,
+        "server_name": "39238319310964543920519489701900.chrsjfklsdjfkljoierfdjklfjlkefeojsdlkfjeoifjsdlkfjweoifjlsdchrs.cyou",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/V2LINE-TELEGRAM-CHANNEL-VLESS-WS-TLS",
+        "headers": {
+          "Host": "39238319310964543920519489701900.chrsjfklsdjfkljoierfdjklfjlkefeojsdlkfjeoifjsdlkfjweoifjlsdchrs.cyou"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 67",
+      "server": "172.67.193.108",
+      "server_port": 443,
+      "uuid": "48b94941-d602-11ee-aaa8-00505603e70d",
+      "tls": {
+        "enabled": true,
+        "server_name": "st-pl-1.brocdn.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/websocket",
+        "headers": {
+          "Host": "st-pl-1.brocdn.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 68",
+      "server": "172.64.35.202",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 69",
+      "server": "108.162.195.209",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 70",
+      "server": "172.66.44.128",
+      "server_port": 443,
+      "uuid": "ea93598b-a8d8-449a-a925-520c6e1626ee",
+      "tls": {
+        "enabled": true,
+        "server_name": "pardazeshvpn-tg105.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@V2ray_Alpha/",
+        "headers": {
+          "Host": "pardazeshvpn-tg105.pages.dev"
+        },
+        "max_early_data": 2087,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 71",
+      "server": "104.21.49.18",
+      "server_port": 443,
+      "uuid": "6d154bf6-d60c-11ee-aaa8-00505603e70d",
+      "tls": {
+        "enabled": true,
+        "server_name": "st-fr-1.brocdn.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/websocket",
+        "headers": {
+          "Host": "st-fr-1.brocdn.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 72",
+      "server": "104.17.148.22",
+      "server_port": 8080,
+      "uuid": "638738d6-a5e7-4cfe-a745-e3bd2e20a4b0",
+      "transport": {
+        "type": "ws",
+        "path": "/@Maznet--@MAZNET--@Maznet--@MAZNET--@Maznet--@MAZNET--@Maznet--@MAZNET--@Maznet--@MAZNET",
+        "headers": {
+          "Host": "maznet---_-_---maznet2.iMamhussaIn.sbs."
+        },
+        "max_early_data": 1024,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 73",
+      "server": "185.146.173.63",
+      "server_port": 8443,
+      "uuid": "578ade22-1e58-4c37-ce01-bfad51a72c62",
+      "tls": {
+        "enabled": true,
+        "server_name": "1i3.diginoshops10.ir",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 74",
+      "server": "104.26.15.85",
+      "server_port": 2096,
+      "uuid": "d3a12e79-ef42-4268-b367-42eeb3494e60",
+      "tls": {
+        "enabled": true,
+        "server_name": "hagh.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "hagh.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 75",
+      "server": "104.20.22.10",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 76",
+      "server": "172.66.46.49",
+      "server_port": 443,
+      "uuid": "c34d58a4-1583-4ea7-9baa-0172e45e58c9",
+      "tls": {
+        "enabled": true,
+        "server_name": "46934504869685551434715544632417.chrsjfklsdjfkljoierfdjklfjlkefeojsdlkfjeoifjsdlkfjweoifjlsdchrs.cyou",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/V2LINE-TELEGRAM-CHANNEL-VLESS-WS-TLS",
+        "headers": {
+          "Host": "46934504869685551434715544632417.chrsjfklsdjfkljoierfdjklfjlkefeojsdlkfjeoifjsdlkfjweoifjlsdchrs.cyou"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 77",
+      "server": "172.66.47.61",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "23spt.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/tel-vpnAndroid2",
+        "headers": {
+          "Host": "23spt.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 78",
+      "server": "172.64.152.170",
+      "server_port": 443,
+      "uuid": "43f8f2c7-59fd-4ab4-b7dd-c52f0f0da18f",
+      "tls": {
+        "enabled": true,
+        "server_name": "BuGfrEEnet-sattAr.PAGes.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/bmvpiqrOHtbFAnVM",
+        "headers": {
+          "Host": "bugfreenet-sattar.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 79",
+      "server": "104.20.18.182",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 80",
+      "server": "104.20.21.43",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 81",
+      "server": "172.64.35.148",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 82",
+      "server": "104.21.25.228",
+      "server_port": 443,
+      "uuid": "f06ac303-e626-451d-bcfc-ee825ee69398",
+      "tls": {
+        "enabled": true,
+        "server_name": "AzADnet-semEj.PAGes.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Tel-@V2ray_Alpha/",
+        "headers": {
+          "Host": "azaDNEt-sEMEJ.PageS.Dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 83",
+      "server": "104.20.17.90",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 84",
+      "server": "23.227.38.208",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.pageS.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@V2ray_Alpha/",
+        "headers": {
+          "Host": "Bpb-v.PAges.deV"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 85",
+      "server": "188.114.97.12",
+      "server_port": 443,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "telegraM-VirginiaVpn.noleCa2676.WorkerS.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "telegraM-VirginiaVpn.noleCa2676.WorkerS.DEV"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 86",
+      "server": "104.26.14.85",
+      "server_port": 443,
+      "uuid": "3f2a8ac5-f359-4333-865a-7064e31c2537",
+      "tls": {
+        "enabled": true,
+        "server_name": "nufilter.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/telegram-NUFiLTER,telegram-NUFiLTER,telegram-NUFiLTER,telegram-NUFiLTER",
+        "headers": {
+          "Host": "nufilter.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 87",
+      "server": "104.20.22.1",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 88",
+      "server": "104.20.19.36",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 89",
+      "server": "104.20.22.28",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 90",
+      "server": "185.146.173.99",
+      "server_port": 80,
+      "uuid": "51741fc6-b3f4-5da8-9d46-314062a620a5",
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "Fr1.vless.site."
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 91",
+      "server": "162.159.44.188",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 92",
+      "server": "104.18.165.78",
+      "server_port": 8080,
+      "uuid": "082e8559-61f6-4075-e255-7ec0f3ac052d",
+      "transport": {
+        "type": "ws",
+        "path": "/TELEGRAM-@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray,@MainV2-ray",
+        "headers": {
+          "Host": "JOiNMAiN.MRaLPHa-Vpn.CoM."
+        },
+        "max_early_data": 8880,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 93",
+      "server": "104.18.1.20",
+      "server_port": 443,
+      "uuid": "f06ac303-e626-451d-bcfc-ee825ee69398",
+      "tls": {
+        "enabled": true,
+        "server_name": "azadNet-SeMej.PAGES.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-------PROXY_MTM-_-_-_-Telegram-------PROXY_MTM/",
+        "headers": {
+          "Host": "AZaDnet-SEmEj.pAgEs.DeV"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 94",
+      "server": "172.66.44.87",
+      "server_port": 443,
+      "uuid": "0ac0df1b-cfce-47b1-a286-91a0ec2fc7ef",
+      "tls": {
+        "enabled": true,
+        "server_name": "pardazeshvpn-tg7.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@V2ray_Alpha/",
+        "headers": {
+          "Host": "pardazeshvpn-tg7.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 95",
+      "server": "104.20.19.203",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 96",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v02.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 97",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v17.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 98",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v06.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 99",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v17.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 100",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v07.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 101",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v03.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 102",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v04.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 103",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v11.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 104",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v02.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 105",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v20.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 106",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v01.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 107",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v15.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 108",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v08.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 109",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v03.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 110",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v07.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 111",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v04.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 112",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v12.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 113",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v09.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 114",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v09.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 115",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v10.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 116",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v06.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 117",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v01.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 118",
+      "server": "151.101.2.228",
+      "server_port": 443,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "tls": {
+        "enabled": true,
+        "server_name": "hajlab.ucdavis.edu",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v08.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 119",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v15.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 120",
+      "server": "2a01:4f8:1c1b:25a3::1",
+      "server_port": 443,
+      "uuid": "13d2aa80-3262-4238-85df-17c894cc420f",
+      "tls": {
+        "enabled": true,
+        "server_name": "gsmarena.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "AVesZ9rUbwnESVl0YSPs98oWmZbXlhDVjR4ssJAw6yw",
+          "short_id": "32d7a82d"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 121",
+      "server": "167.82.30.71",
+      "server_port": 80,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "transport": {
+        "type": "ws",
+        "path": "/4u7lAS4nPLtz0xPz",
+        "headers": {
+          "Host": "samane.ir"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 122",
+      "server": "185.18.250.117",
+      "server_port": 443,
+      "uuid": "1e9aadae-ca17-4f75-b0a0-7de5e3858cfb",
+      "tls": {
+        "enabled": true,
+        "server_name": "xN----PMcNAAC0DKn0Rb71nDa.PAges.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@Linkvws",
+        "headers": {
+          "Host": "xn----pmcnaac0dkn0rb71nda.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 123",
+      "server": "185.18.250.117",
+      "server_port": 443,
+      "uuid": "1e9aadae-ca17-4f75-b0a0-7de5e3858cfb",
+      "tls": {
+        "enabled": true,
+        "server_name": "xN----PMcNAAC0DKn0Rb71nDa.PAges.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@Linkvws",
+        "headers": {
+          "Host": "xn----pmcnaac0dkn0rb71nda.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 124",
+      "server": "185.247.184.147",
+      "server_port": 2060,
+      "uuid": "4a60a8e0-b51d-41ae-8500-1b0b6724c6e6",
+      "tls": {
+        "enabled": true,
+        "server_name": "dash.cloudflare.com",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "1k5jM49Bx5DEAfS5Vpqz93t2XOXk-kwXl0V5Q9jn_WY",
+          "short_id": "f77e5398"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 125",
+      "server": "185.18.250.117",
+      "server_port": 443,
+      "uuid": "1e9aadae-ca17-4f75-b0a0-7de5e3858cfb",
+      "tls": {
+        "enabled": true,
+        "server_name": "xN----PMcNAAC0DKn0Rb71nDa.PAges.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@Linkvws",
+        "headers": {
+          "Host": "xn----pmcnaac0dkn0rb71nda.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 126",
+      "server": "185.247.184.147",
+      "server_port": 2060,
+      "uuid": "4a60a8e0-b51d-41ae-8500-1b0b6724c6e6",
+      "tls": {
+        "enabled": true,
+        "server_name": "dash.cloudflare.com",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "1k5jM49Bx5DEAfS5Vpqz93t2XOXk-kwXl0V5Q9jn_WY",
+          "short_id": "f77e5398"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 127",
+      "server": "104.16.14.99",
+      "server_port": 443,
+      "uuid": "03a987de-7e12-4b38-acbc-e19c90e1cc85",
+      "tls": {
+        "enabled": true,
+        "server_name": "ARCane-ROYAL.Pages.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ARCane-ROYAL.Pages.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 128",
+      "server": "2a01:4f8:1c1b:7df::1",
+      "server_port": 443,
+      "uuid": "f4a41b1e-c129-4a17-b10a-886dda518ce5",
+      "tls": {
+        "enabled": true,
+        "server_name": "gsmarena.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "AVesZ9rUbwnESVl0YSPs98oWmZbXlhDVjR4ssJAw6yw",
+          "short_id": "32d7a82d"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 129",
+      "server": "104.16.14.99",
+      "server_port": 443,
+      "uuid": "03a987de-7e12-4b38-acbc-e19c90e1cc85",
+      "tls": {
+        "enabled": true,
+        "server_name": "ARCane-ROYAL.Pages.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@V2ray_Alpha/",
+        "headers": {
+          "Host": "ARCane-ROYAL.Pages.DEV"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 130",
+      "server": "2a01:4f8:1c1b:1891::1",
+      "server_port": 443,
+      "uuid": "9d05d2d6-2bd0-4f7b-9b9a-77deab0ae2cc",
+      "tls": {
+        "enabled": true,
+        "server_name": "gsmarena.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "AVesZ9rUbwnESVl0YSPs98oWmZbXlhDVjR4ssJAw6yw",
+          "short_id": "32d7a82d"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 131",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v19.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 132",
+      "server": "199.232.95.123",
+      "server_port": 80,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@Linkvws",
+        "headers": {
+          "Host": "sara193.ir"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 133",
+      "server": "2606:4700:310c::ac42:2f3d",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "23sPT.pAGEs.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@V2ray_Alpha/",
+        "headers": {
+          "Host": "23spt.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 134",
+      "server": "104.18.39.232",
+      "server_port": 2083,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "ArGodev11222.PaGes.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-@V2ray_Alpha/",
+        "headers": {
+          "Host": "argodev11222.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 135",
+      "server": "172.66.47.151",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "23sPT.pAGEs.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram@Linkvws",
+        "headers": {
+          "Host": "23spt.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 136",
+      "server": "172.67.73.163",
+      "server_port": 443,
+      "uuid": "3f2a8ac5-f359-4333-865a-7064e31c2538",
+      "tls": {
+        "enabled": true,
+        "server_name": "nufilterok.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-@V2ray_Alpha/",
+        "headers": {
+          "Host": "nufilterok.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 137",
+      "server": "151.101.2.228",
+      "server_port": 80,
+      "uuid": "3e6499a3-4a3e-40bf-b4e9-a3bae20b8c8a",
+      "transport": {
+        "type": "ws",
+        "headers": {
+          "Host": "wWw.SpEeDtEsT.NeT.ZuLa.aIr.IkCoSaLeS.iR.D662599.v05.TzZLiMitTNeW.NeT"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 138",
+      "server": "104.17.148.22",
+      "server_port": 8443,
+      "uuid": "aea2cc96-3f77-4950-a70e-c6cc9a0c8c84",
+      "tls": {
+        "enabled": true,
+        "server_name": "03.ev02-02-q2wx8ryz0vic3bfmd1sng7pjjn6lqk4p.tech",
+        "alpn": [
+          "h3",
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 139",
+      "server": "104.18.1.20",
+      "server_port": 443,
+      "uuid": "f06ac303-e626-451d-bcfc-ee825ee69398",
+      "tls": {
+        "enabled": true,
+        "server_name": "azadNet-SeMej.PAGES.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-@V2ray_Alpha/",
+        "headers": {
+          "Host": "AZaDnet-SEmEj.pAgEs.DeV"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 140",
+      "server": "104.17.148.22",
+      "server_port": 8443,
+      "uuid": "118b6d02-4020-4cc9-be03-7a9c6d04945c",
+      "tls": {
+        "enabled": true,
+        "server_name": "01.ev02-02-q2wx8ryz0vic3bfmd1sng7pjjn6lqk4p.tech",
+        "alpn": [
+          "h3",
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN,@Everyday_VPN",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 141",
+      "server": "104.24.196.20",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BPB-v.PAGeS.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ekHMvTed6wJeJJlo/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-v.PagES.deV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 142",
+      "server": "172.67.66.177",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.paGEs.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/jdMMEgBE5RGsuynR/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPB-V.paGEs.dEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 143",
+      "server": "104.24.196.20",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.paGEs.dEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/jdMMEgBE5RGsuynR/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPB-V.paGEs.dEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 144",
+      "server": "188.114.98.238",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-v.PaGeS.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/KheiTaJ43GZuGk3r/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPB-v.PaGeS.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 145",
+      "server": "5.75.203.192",
+      "server_port": 1050,
+      "uuid": "b1882ccc-10a5-42fd-97a7-07dc603b7abc",
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 146",
+      "server": "141.101.123.155",
+      "server_port": 443,
+      "uuid": "a13df940-020c-465f-bc89-ee5279b5cd6a",
+      "tls": {
+        "enabled": true,
+        "server_name": "cn.ylks.xyz",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/blue",
+        "headers": {
+          "Host": "cn.ylks.xyz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 147",
+      "server": "188.114.97.51",
+      "server_port": 2053,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpB-V.pAges.deV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/3TpLMmFcBgEGilSv/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bPb-v.paGes.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 148",
+      "server": "104.18.34.21",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bpb-V.PAGEs.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/P3CkdedH5De954Jp/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "bpb-V.PAGEs.DEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 149",
+      "server": "172.66.47.119",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "BPB-v.PagES.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/2Ppx1F9heZcHSSm9/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "BPb-v.PAgeS.dEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 150",
+      "server": "185.146.173.45",
+      "server_port": 443,
+      "uuid": "51741fc6-b3f4-5da8-9d46-314062a620a5",
+      "tls": {
+        "enabled": true,
+        "server_name": "fr1.vless.site",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "fr1.vless.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 151",
+      "server": "104.21.47.27",
+      "server_port": 443,
+      "uuid": "4f073a8d-28e0-4dc3-94e8-57bb333cbe91",
+      "tls": {
+        "enabled": true,
+        "server_name": "yelt88rxdan.thelastronin.cloudns.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/VLESS/fr-freevmess.privateip.net",
+        "headers": {
+          "Host": "yelan.thelastronin.cloudns.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 152",
+      "server": "104.21.47.27",
+      "server_port": 443,
+      "uuid": "4f073a8d-28e0-4dc3-94e8-57bb333cbe91",
+      "tls": {
+        "enabled": true,
+        "server_name": "yelt88rxdan.thelastronin.cloudns.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/VLESS/fr-freevmess.privateip.net",
+        "headers": {
+          "Host": "yelan.thelastronin.cloudns.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 153",
+      "server": "172.67.138.69",
+      "server_port": 8080,
+      "uuid": "f2dd5873-6f5f-4ddd-aa7c-9f3cd749c4b6",
+      "transport": {
+        "type": "ws",
+        "path": "/@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy----@XvProxy",
+        "headers": {
+          "Host": "www.speedtest.net.www.zula.ir.cloudflare.com.www.zula.ir.svgspeedtest.net"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 154",
+      "server": "172.67.73.238",
+      "server_port": 443,
+      "uuid": "97214f48-f3f0-488c-8104-54a3d5ce16ed",
+      "tls": {
+        "enabled": true,
+        "server_name": "yelan.thelastronin.cloudns.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/VLESS/us-full.privateip.net",
+        "headers": {
+          "Host": "yelan.thelastronin.cloudns.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 155",
+      "server": "104.26.10.29",
+      "server_port": 443,
+      "uuid": "c0f0684e-bbc5-45fa-9e04-2e617d11eb68",
+      "tls": {
+        "enabled": true,
+        "server_name": "yelantcct8ft.thelastronin.cloudns.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/VLESS/ca-full.privateip.net",
+        "headers": {
+          "Host": "yelan.thelastronin.cloudns.org"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 156",
+      "server": "172.67.1.191",
+      "server_port": 443,
+      "uuid": "89b3cbba-e6ac-485a-9481-976a0415eab9",
+      "tls": {
+        "enabled": true,
+        "server_name": "bPB-V.pAges.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/LtZFqGz6qD8jBoHW/MTI5LjE1OS4yNDEuMTcy",
+        "headers": {
+          "Host": "Bpb-v.PaGES.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 157",
+      "server": "150.241.83.80",
+      "server_port": 8443,
+      "uuid": "5a64a684-7c96-42b4-b066-8ec3a138998a",
+      "tls": {
+        "enabled": true,
+        "server_name": "yyyyyyyu.v2ryng01.ru",
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 158",
+      "server": "172.67.181.179",
+      "server_port": 443,
+      "uuid": "7060e85c-bc94-44b9-9e72-2be423a58342",
+      "tls": {
+        "enabled": true,
+        "server_name": "wvwkp.mmzhk.website",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "wvwkp.mmzhk.website"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 159",
+      "server": "104.21.36.62",
+      "server_port": 443,
+      "uuid": "0dcc6d49-bb91-4284-b503-6ae5768e2e61",
+      "tls": {
+        "enabled": true,
+        "server_name": "dpbum.whmvmkwuey.store",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "dpbum.whmvmkwuey.store"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 160",
+      "server": "104.22.52.235",
+      "server_port": 443,
+      "uuid": "571f64c7-bff0-4d33-8765-56ad2334cb55",
+      "tls": {
+        "enabled": true,
+        "server_name": "ca.ailicf.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/ascb",
+        "headers": {
+          "Host": "ca.ailicf.us.kg"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 161",
+      "server": "172.67.73.241",
+      "server_port": 443,
+      "uuid": "f4397322-d5fa-11ee-aaa8-00505603e70d",
+      "tls": {
+        "enabled": true,
+        "server_name": "st-pl-1.brocdn.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/websocket",
+        "headers": {
+          "Host": "st-pl-1.brocdn.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 162",
+      "server": "188.114.98.28",
+      "server_port": 443,
+      "uuid": "a13df940-020c-465f-bc89-ee5279b5cd6a",
+      "tls": {
+        "enabled": true,
+        "server_name": "dn.ylks.xyz",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/blue",
+        "headers": {
+          "Host": "dn.ylks.xyz"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 163",
+      "server": "172.67.216.146",
+      "server_port": 443,
+      "uuid": "a991e540-124a-405f-b7a5-e6e7713313ef",
+      "tls": {
+        "enabled": true,
+        "server_name": "gzxsf.kovmk.website",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "gzxsf.kovmk.website"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 164",
+      "server": "172.67.171.93",
+      "server_port": 443,
+      "uuid": "fe945275-51a2-5c3c-8669-2c112ed35cec",
+      "tls": {
+        "enabled": true,
+        "server_name": "nl1.vless.site",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless",
+        "headers": {
+          "Host": "nl1.vless.site"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 165",
+      "server": "172.66.47.192",
+      "server_port": 443,
+      "uuid": "9902fc94-31f9-4afe-b37a-82f5790b3d2a",
+      "tls": {
+        "enabled": true,
+        "server_name": "dabF5Ca6.dE1-1nD.PaGeS.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "dabF5Ca6.dE1-1nD.PaGeS.dEv"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 166",
+      "server": "104.26.10.137",
+      "server_port": 443,
+      "uuid": "32f09b70-d2f7-11ee-abda-00505603e70d",
+      "tls": {
+        "enabled": true,
+        "server_name": "st-gb-1.brocdn.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/websocket",
+        "headers": {
+          "Host": "st-gb-1.brocdn.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 167",
+      "server": "188.114.96.2",
+      "server_port": 2053,
+      "uuid": "3b4f4101-7ff7-4496-bda3-1d63dc2dad66",
+      "tls": {
+        "enabled": true,
+        "server_name": "Dffggvghgggvg.vshsbsbb-jzjsjb-vdhsh-mahdi-irancel.ir",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-Telegramjoin:@V2Ray_Rolly-",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 168",
+      "server": "172.67.186.192",
+      "server_port": 443,
+      "uuid": "0dcc6d49-bb91-4284-b503-6ae5768e2e61",
+      "tls": {
+        "enabled": true,
+        "server_name": "dpbum.whmvmkwuey.store",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "dpbum.whmvmkwuey.store"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 169",
+      "server": "172.67.221.164",
+      "server_port": 8443,
+      "uuid": "a55ff7d6-1566-4767-8daa-8fc7459b81ed",
+      "tls": {
+        "enabled": true,
+        "server_name": "a70.bluebana.info",
+        "alpn": [
+          "h3",
+          "h2",
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 170",
+      "server": "104.21.233.139",
+      "server_port": 443,
+      "uuid": "d3a12e79-ef42-4268-b367-42eeb3494e60",
+      "tls": {
+        "enabled": true,
+        "server_name": "Hagh.PaGes.DEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "Hagh.PaGes.DEv"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 171",
+      "server": "151.101.3.8",
+      "server_port": 80,
+      "uuid": "7d2dfb7a-2ecc-4448-bcbe-245a2092fe85",
+      "transport": {
+        "type": "ws",
+        "path": "/Telegram-Xv2ry2-8",
+        "headers": {
+          "Host": "9x.ru."
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 172",
+      "server": "185.226.92.168",
+      "server_port": 999,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "vless.ifx.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/?ed",
+        "headers": {
+          "Host": "vless.ifx.us.kg"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 173",
+      "server": "104.16.14.99",
+      "server_port": 443,
+      "uuid": "03a987de-7e12-4b38-acbc-e19c90e1cc85",
+      "tls": {
+        "enabled": true,
+        "server_name": "ARCane-ROYAL.Pages.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "ARCane-ROYAL.Pages.DEV"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 174",
+      "server": "172.67.158.12",
+      "server_port": 443,
+      "uuid": "32f09b70-d2f7-11ee-abda-00505603e70d",
+      "tls": {
+        "enabled": true,
+        "server_name": "st-gb-1.brocdn.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/websocket",
+        "headers": {
+          "Host": "st-gb-1.brocdn.com"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 175",
+      "server": "160.153.0.131",
+      "server_port": 443,
+      "uuid": "921c3e7a-35b5-4499-aef5-363fd050bb29",
+      "tls": {
+        "enabled": true,
+        "server_name": "s1.digikala-iranian.org",
+        "alpn": "h2",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "grpc",
+        "idle_timeout": "15s",
+        "ping_timeout": "15s"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 176",
+      "server": "104.17.147.22",
+      "server_port": 8080,
+      "uuid": "925b31c8-73d3-44d4-e087-af7b7ff7e490",
+      "transport": {
+        "type": "ws",
+        "path": "/Fox",
+        "headers": {
+          "Host": "1i4.diginoshops10.ir"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 177",
+      "server": "172.67.165.101",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 178",
+      "server": "172.67.68.101",
+      "server_port": 443,
+      "uuid": "a64f0cea-ca89-40e6-b316-b3badff1eb90",
+      "tls": {
+        "enabled": true,
+        "server_name": "IsaA1.pAgEs.DEV",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vlees_v2rayng",
+        "headers": {
+          "Host": "ISAa1.PAGeS.deV"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 179",
+      "server": "104.20.20.99",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 180",
+      "server": "172.66.47.59",
+      "server_port": 443,
+      "uuid": "d3a12e79-ef42-4268-b367-42eeb3494e60",
+      "tls": {
+        "enabled": true,
+        "server_name": "hagh.pages.Dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "hagh.pages.Dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 181",
+      "server": "162.159.44.207",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 182",
+      "server": "198.41.218.166",
+      "server_port": 443,
+      "uuid": "a13df940-020c-465f-bc89-ee5279b5cd6a",
+      "tls": {
+        "enabled": true,
+        "server_name": "lm.kpcloud.eu.org",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "lm.kpcloud.eu.org"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 183",
+      "server": "167.82.81.226",
+      "server_port": 80,
+      "uuid": "49137ced-5a05-4cdb-a44a-3f3a19fe421d",
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "amir0903.ir"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 184",
+      "server": "103.180.161.69",
+      "server_port": 587,
+      "uuid": "d342d11e-d424-4583-b36e-524ab1f0afa4",
+      "tls": {
+        "enabled": true,
+        "server_name": "vless.ifx.us.kg",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "vless.ifx.us.kg"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 185",
+      "server": "104.20.25.57",
+      "server_port": 2096,
+      "uuid": "2c4cd186-9e28-51b0-8ecb-43e65fa718d6",
+      "tls": {
+        "enabled": true,
+        "server_name": "sany0116p.ljqza.WorKErs.dEv",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "qq"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/vless-ws/",
+        "headers": {
+          "Host": "sany0116p.ljqza.WorKErs.dEv"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 186",
+      "server": "104.26.14.85",
+      "server_port": 2096,
+      "uuid": "d3a12e79-ef42-4268-b367-42eeb3494e60",
+      "tls": {
+        "enabled": true,
+        "server_name": "hagh.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "random"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/",
+        "headers": {
+          "Host": "hagh.pages.dev"
+        },
+        "max_early_data": 2048,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 187",
+      "server": "104.20.19.157",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 188",
+      "server": "172.67.64.12",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 189",
+      "server": "104.20.22.137",
+      "server_port": 443,
+      "uuid": "2928d83a-ca75-4d52-b437-fa78c7601378",
+      "tls": {
+        "enabled": true,
+        "server_name": "freedom-1rj.pages.dev",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "randomized"
+        }
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/freedom-1rj.pages.dev/",
+        "headers": {
+          "Host": "freedom-1rj.pages.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 190",
+      "server": "172.67.27.46",
+      "server_port": 80,
+      "uuid": "b5cdabf0-e048-4fa2-90da-9379b1a4926e",
+      "transport": {
+        "type": "ws",
+        "path": "/b5cdabf0-e04",
+        "headers": {
+          "Host": "cc.ailicf.us.kg"
+        },
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "vless",
+      "tag": "vless § 191",
+      "server": "104.17.148.22",
+      "server_port": 2052,
+      "uuid": "DIGIV2RAY",
+      "transport": {
+        "type": "httpupgrade",
+        "path": "/tm-Digiv2-__teldIGIv2__-DIGIV",
+        "headers": {
+          "Host": "www.warzesh3.com.ftp.debian.org.digikala.org.www.speedtest.net.cloudflare.com.par31games.ir."
+        }
+      },
+      "packet_encoding": ""
+    },
+    {
+      "type": "dns",
+      "tag": "dns-out"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "direct",
+      "tag": "direct-fragment",
+      "tls_fragment": {
+        "enabled": true,
+        "size": "10-30",
+        "sleep": "2-8"
+      }
+    },
+    {
+      "type": "direct",
+      "tag": "bypass"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "rule_set": [
+          "geoip-ir",
+          "geosite-ir"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "inbound": "dns-in",
+        "outbound": "dns-out"
+      },
+      {
+        "port": 53,
+        "outbound": "dns-out"
+      },
+      {
+        "clash_mode": "Direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "Global",
+        "outbound": "select"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "geoip-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geoip-ir.srs",
+        "update_interval": "120h0m0s"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ir",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/hiddify/hiddify-geo/rule-set/country/geosite-ir.srs",
+        "update_interval": "120h0m0s"
+      }
+    ],
+    "final": "select",
+    "auto_detect_interface": true,
+    "override_android_vpn": true
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true,
+      "path": "clash.db"
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:16756",
+      "secret": "lUF-rCb55VHYtM9i"
+    }
+  }
+}
